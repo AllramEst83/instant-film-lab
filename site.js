@@ -174,7 +174,7 @@ document.addEventListener("DOMContentLoaded", () => {
       ctx.beginPath();
       const startX = Math.random() * width;
       const startY = Math.random() * height;
-      const endX = startX + (Math.random() - 0.5) * (width * 0.2); // Shorter scratches
+      const endX = startX + (Math.random() - 0.5) * (width * 0.2);
       const endY = startY + (Math.random() - 0.5) * (height * 0.2);
       ctx.moveTo(startX, startY);
       ctx.lineTo(endX, endY);
