@@ -29,11 +29,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const files = event.target.files;
     if (files.length === 0) return;
 
-    photoGallery.innerHTML = "";
-    processedImages = [];
-    downloadAllBtn.disabled = true;
-    fileCountSpan.textContent = `${files.length} file${
-      files.length > 1 ? "s" : ""
+    // Remove the lines that reset the gallery and processed images
+    // photoGallery.innerHTML = "";
+    // processedImages = [];
+
+    // Update the file count to include both new and existing images
+    const totalFiles = processedImages.length + files.length;
+    fileCountSpan.textContent = `${totalFiles} file${
+      totalFiles > 1 ? "s" : ""
     } selected`;
     showSpinner();
 
@@ -47,6 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (processedImages.length > 0) {
           downloadAllBtn.disabled = false;
         }
+        fileUpload.value = ""; // Reset file input to allow re-selection of the same file
       })
       .catch((error) => {
         console.error("An error occurred during image processing:", error);
