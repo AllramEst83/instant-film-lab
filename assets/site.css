@@ -30,6 +30,11 @@ body {
   max-width: 800px;
 }
 
+.app-logo {
+  vertical-align: middle;
+  height: 50px;
+}
+
 h1 {
   font-family: var(--font-handwritten);
   font-size: 3rem;
