@@ -205,7 +205,7 @@ input[type="file"] {
 
 .download-btn-single {
   position: absolute;
-  bottom: 10px;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   background: var(--primary-color);
@@ -216,6 +216,14 @@ input[type="file"] {
   font-size: 0.9rem;
   cursor: pointer;
   transition: all 0.2s ease;
+}
+
+@media (max-width: 768px) {
+  .download-btn-single {
+    font-size: 1.1rem;
+    padding: 8px 20px;
+    bottom: 15px;
+  }
 }
 
 .download-btn-single:hover {
