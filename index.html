@@ -16,12 +16,24 @@
     </div>
 
     <div class="controls">
-      <label for="file-upload" class="file-label">Select Photos</label>
-      <input type="file" id="file-upload" accept="image/*" multiple />
-      <span id="file-count">0 files selected</span>
-      <button id="download-all-btn" class="btn btn-primary" disabled>
-        Download All
-      </button>
+      <div class="upload-container">
+        <span id="file-count">0 files selected</span>
+      </div>
+
+      <div class="controls-container">
+        <div class="button-row">
+          <label for="file-upload" class="file-label">Select Photos</label>
+          <input type="file" id="file-upload" accept="image/*" multiple />
+          <button id="download-all-btn" class="btn btn-primary" disabled>
+            Download All
+          </button>
+        </div>
+
+        <div class="toggle-row">
+          <label for="bw-toggle" class="toggle-label">Black & White</label>
+          <input type="checkbox" id="bw-toggle" />
+        </div>
+      </div>
     </div>
 
     <div id="photo-gallery"></div>

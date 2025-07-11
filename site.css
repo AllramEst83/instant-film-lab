@@ -45,14 +45,31 @@ p {
 
 .controls {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1rem;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
   margin-bottom: 2rem;
   padding: 1.5rem;
   background: white;
   border-radius: 12px;
   box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+.upload-container,
+.controls-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
 }
 
 .btn {
@@ -228,4 +245,50 @@ input[type="file"] {
   to {
     transform: rotate(360deg);
   }
+}
+
+@media (max-width: 768px) {
+  .button-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+/* Style for the Black & White toggle */
+.toggle-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#bw-toggle {
+  appearance: none;
+  width: 40px;
+  height: 20px;
+  background: #ccc;
+  border-radius: 20px;
+  position: relative;
+  outline: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#bw-toggle:checked {
+  background: var(--accent-color);
+}
+
+#bw-toggle::before {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+#bw-toggle:checked::before {
+  transform: translateX(20px);
 }

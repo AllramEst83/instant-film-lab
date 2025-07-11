@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const downloadAllBtn = document.getElementById("download-all-btn");
   const photoGallery = document.getElementById("photo-gallery");
   const spinnerContainer = document.getElementById("spinner-container");
+  const bwToggle = document.getElementById("bw-toggle");
 
   let processedImages = []; // To store data URLs for zipping
 
@@ -99,14 +100,20 @@ document.addEventListener("DOMContentLoaded", () => {
           const ctx = canvas.getContext("2d");
 
           // Apply effects after resizing
-          ctx.filter =
-            "sepia(0.3) contrast(1.5) brightness(0.9) saturate(1.2) hue-rotate(-5deg)";
+          if (bwToggle.checked) {
+            ctx.filter = "grayscale(100%)";
+          } else {
+            ctx.filter =
+              "sepia(0.3) contrast(1.5) brightness(0.9) saturate(1.2) hue-rotate(-5deg)";
+          }
           ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
 
-          ctx.globalAlpha = 0.08;
-          ctx.fillStyle = "#f7edd5ff";
-          ctx.fillRect(0, 0, canvas.width, canvas.height);
-          ctx.globalAlpha = 1.0;
+          if (!bwToggle.checked) {
+            ctx.globalAlpha = 0.08;
+            ctx.fillStyle = "#f7edd5ff";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.globalAlpha = 1.0;
+          }
 
           const vignetteAmount = 0.8;
           const gradient = ctx.createRadialGradient(
