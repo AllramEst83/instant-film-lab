@@ -6,12 +6,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const photoGallery = document.getElementById("photo-gallery");
   const spinnerContainer = document.getElementById("spinner-container");
   const bwToggle = document.getElementById("bw-toggle");
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImage = document.getElementById("lightbox-image");
+  const lightboxClose = document.getElementById("lightbox-close");
+  const lightboxPrev = document.getElementById("lightbox-prev");
+  const lightboxNext = document.getElementById("lightbox-next");
 
   let processedImages = []; // To store data URLs for zipping
+  let currentImageIndex = 0;
 
   // --- Event Listeners ---
   fileUpload.addEventListener("change", handleFileSelect);
   downloadAllBtn.addEventListener("click", downloadAllAsZip);
+  lightboxClose.addEventListener("click", closeLightbox);
+  lightboxPrev.addEventListener("click", showPrevImage);
+  lightboxNext.addEventListener("click", showNextImage);
 
   /**
    * Handles the file selection event.
@@ -303,4 +312,34 @@ document.addEventListener("DOMContentLoaded", () => {
   function hideSpinner() {
     spinnerContainer.style.display = "none";
   }
+
+  function openLightbox(index) {
+    currentImageIndex = index;
+    lightboxImage.src = processedImages[index].dataUrl;
+    lightbox.classList.remove("hidden");
+  }
+
+  function closeLightbox() {
+    lightbox.classList.add("hidden");
+  }
+
+  function showPrevImage() {
+    currentImageIndex =
+      (currentImageIndex - 1 + processedImages.length) % processedImages.length;
+    lightboxImage.src = processedImages[currentImageIndex].dataUrl;
+  }
+
+  function showNextImage() {
+    currentImageIndex = (currentImageIndex + 1) % processedImages.length;
+    lightboxImage.src = processedImages[currentImageIndex].dataUrl;
+  }
+
+  photoGallery.addEventListener("click", (event) => {
+    if (event.target.tagName === "IMG") {
+      const index = Array.from(photoGallery.querySelectorAll("img")).indexOf(
+        event.target
+      );
+      openLightbox(index);
+    }
+  });
 });

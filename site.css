@@ -292,3 +292,64 @@ input[type="file"] {
 #bw-toggle:checked::before {
   transform: translateX(20px);
 }
+
+/* Lightbox Styles */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s ease;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+}
+
+.lightbox.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.lightbox:not(.hidden) {
+  visibility: visible;
+  opacity: 1;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px; /* Moved slightly down */
+  right: 30px; /* Moved slightly inward */
+  font-size: 2rem; /* Increased size */
+  color: white;
+  cursor: pointer;
+}
+
+.lightbox-nav {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox-prev,
+.lightbox-next {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2.5rem; /* Increased size */
+  cursor: pointer;
+  padding: 0 1.5rem; /* Adjusted padding for better spacing */
+}
